@@ -158,7 +158,7 @@ const Scoreboard = ({ onGameStateChange, onScoreUpdate, onTeamToggle, currentTea
         <div className="logo-container">
           {getTeamLogo(teams[0].name) ? (
             <img 
-              src={`/logos/${getTeamLogo(teams[0].name)}`} 
+              src={`${process.env.PUBLIC_URL}/logos/${getTeamLogo(teams[0].name)}`} 
               alt={teams[0].name || 'Team 1'} 
               className="team-logo"
             />
@@ -196,7 +196,7 @@ const Scoreboard = ({ onGameStateChange, onScoreUpdate, onTeamToggle, currentTea
         <div className="logo-container">
           {getTeamLogo(teams[1].name) ? (
             <img 
-              src={`/logos/${getTeamLogo(teams[1].name)}`} 
+              src={`${process.env.PUBLIC_URL}/logos/${getTeamLogo(teams[1].name)}`} 
               alt={teams[1].name || 'Team 2'} 
               className="team-logo"
             />
