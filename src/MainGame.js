@@ -84,7 +84,7 @@ function MainGame() {
   const handleConfirmGame = () => {
     setCurrentMode('game');
     // Open the control panel popup automatically
-    window.open('/ocho-overtime/control-panel', 'HostControlPanel', 'width=420,height=700');
+    window.open('/#/control-panel', 'HostControlPanel', 'width=420,height=700');
   };
 
   const handleBackToSetup = () => {
