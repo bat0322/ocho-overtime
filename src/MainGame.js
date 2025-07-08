@@ -84,7 +84,7 @@ function MainGame() {
   const handleConfirmGame = () => {
     setCurrentMode('game');
     // Open the control panel popup automatically
-    window.open('/#/control-panel', 'HostControlPanel', 'width=420,height=700');
+    window.open(`${window.location.origin}${window.location.pathname}#/control-panel`, 'HostControlPanel', 'width=420,height=700');
   };
 
   const handleBackToSetup = () => {
@@ -133,7 +133,7 @@ function MainGame() {
 
   // Button to open the control panel popup
   const openControlPanelWindow = () => {
-    window.open('/control-panel', 'HostControlPanel', 'width=420,height=700');
+    window.open(`${window.location.origin}${window.location.pathname}#/control-panel`, 'HostControlPanel', 'width=420,height=700');
   };
 
   if (currentMode === 'setup') {
