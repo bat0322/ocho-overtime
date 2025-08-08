@@ -8,12 +8,13 @@ const GameSetup = ({ onStartGame }) => {
   const [team2, setTeam2] = useState('');
 
   const teams = [
+    'Bonnies NIL Collective',
     'Chickenhawks',
     'Frankchester United',
+    'Herbstreit Vick Pet Clinic',
     'Hive Mind',
     'Hypnotoads',
     'Lick My Qualls',
-    'Maccabros',
     'Mentally Illest',
     'Night Pandas',
     'Pool Boy',

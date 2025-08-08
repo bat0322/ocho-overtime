@@ -7,29 +7,31 @@ const Scoreboard = ({ onGameStateChange, onScoreUpdate, onTeamToggle, currentTea
 
   const getTeamLogo = (teamName) => {
     const logoMap = {
+      'Bonnies NIL Collective': 'bonnies_nil_collective_logo.png',
+      'Chickenhawks': 'chickenhawks_logo.png',
+      'Frankchester United': 'frankchester_logo.png',
+      'Herbstreit Vick Pet Clinic': 'herbstreit_vick_pet_clinic_logo.png',
+      'Hive Mind': 'hive_mind_logo.png',
+      'Hypnotoads': 'hypnotoads_logo.png',
       'Lick My Qualls': 'lick_my_qualls_logo.png',
       'Mentally Illest': 'mentally_illest_logo.png',
-      'Frankchester United': 'frankchester_logo.png',
-      'Hypnotoads': 'hypnotoads_logo.png',
       'Night Pandas': 'night_pandas_logo.png',
-      'Simple Jacks': 'simple_jacks_logo.png',
-      'Maccabros': 'maccabros_logo.png',
-      'Scarlet Knights': 'scarlet_knights_logo.png',
-      'Hive Mind': 'hive_mind_logo.png',
       'Pool Boy': 'pool_boy_logo.png',
-      'Chickenhawks': 'chickenhawks_logo.png'
+      'Scarlet Knights': 'scarlet_knights_logo.png',
+      'Simple Jacks': 'simple_jacks_logo.png'
     };
     return logoMap[teamName] || null;
   };
 
   const getTeamColors = (teamName) => {
     const colorMap = {
+      'Bonnies NIL Collective': { primary: '#66372B', secondary: '#E6CA97' }, // Black/White
       'Chickenhawks': { primary: '#4C7239', secondary: '#FFFFFF' }, // Green/White
       'Frankchester United': { primary: '#ED88E1', secondary: '#FBE64D' }, // Pink/Yellow
+      'Herbstreit Vick Pet Clinic': { primary: '#001F5D', secondary: '#ECCF65' }, // Black/White
       'Hive Mind': { primary: '#F4CB54', secondary: '#000000' }, // Gold/Black
       'Hypnotoads': { primary: '#6A288B', secondary: '#3D1848' }, // Purple/Dark Purple
       'Lick My Qualls': { primary: '#EA3324', secondary: '#FFFFFF' }, // Red/White
-      'Maccabros': { primary: '#3C87F7', secondary: '#B49361' }, // Blue/Gold
       'Mentally Illest': { primary: '#EA983F', secondary: '#FFFFFF' }, // Orange/White
       'Night Pandas': { primary: '#000000', secondary: '#65A542' }, // Black/Green
       'Pool Boy': { primary: '#A32E2D', secondary: '#0E224A' }, // Red/Dark Blue
