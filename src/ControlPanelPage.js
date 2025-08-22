@@ -7,7 +7,8 @@ const defaultItems = [];
 function ControlPanelPage() {
   const channelRef = useRef(null);
   const [items, setItems] = useState([]);
-  const [currentTeam, setCurrentTeam] = useState(1);
+  const [currentTeam, setCurrentTeam] = useState(0);
+  const [teams, setTeams] = useState([]);
   const [revealedItems, setRevealedItems] = useState([]);
 
   // Create the channel only once
@@ -22,7 +23,8 @@ function ControlPanelPage() {
       const { type, gameConfig, currentTeam, revealedItems } = event.data;
       if (type === 'SYNC_STATE') {
         setItems(gameConfig?.items || []);
-        setCurrentTeam(currentTeam || 1);
+        setTeams(gameConfig?.teams || []);
+        setCurrentTeam(currentTeam || 0);
         setRevealedItems(revealedItems || []);
       }
     };
@@ -44,12 +46,20 @@ function ControlPanelPage() {
     }
   };
 
+  const handleRevealAll = () => {
+    if (channelRef.current) {
+      channelRef.current.postMessage({ type: 'REVEAL_ALL' });
+    }
+  };
+
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <ControlPanel
         items={items}
         onCorrectAnswer={handleCorrectAnswer}
         onWrongAnswer={handleWrongAnswer}
+        onRevealAll={handleRevealAll}
+        teams={teams}
         currentTeam={currentTeam}
         revealedItems={revealedItems}
       />

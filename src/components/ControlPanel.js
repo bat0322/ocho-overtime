@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './ControlPanel.css';
 
-const ControlPanel = ({ items, onCorrectAnswer, onWrongAnswer, currentTeam, revealedItems = [] }) => {
+const ControlPanel = ({ items, onCorrectAnswer, onWrongAnswer, onRevealAll, teams, currentTeam, revealedItems = [] }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const dropdownRef = useRef(null);
 
   // Filter items based on search term and revealedItems
@@ -68,12 +69,30 @@ const ControlPanel = ({ items, onCorrectAnswer, onWrongAnswer, currentTeam, reve
     setIsDropdownOpen(true);
   };
 
+  const handleRevealAllClick = () => {
+    setShowConfirmDialog(true);
+  };
+
+  const handleConfirmRevealAll = () => {
+    if (onRevealAll) {
+      onRevealAll();
+    }
+    setShowConfirmDialog(false);
+  };
+
+  const handleCancelRevealAll = () => {
+    setShowConfirmDialog(false);
+  };
+
+  console.log(teams);
+  console.log(currentTeam);
+
   return (
     <div className="control-panel">
       <div className="control-header">
         <h3>Host Control Panel</h3>
         <div className="team-indicator">
-          Active Team: <span className={`team-${currentTeam}`}>Team {currentTeam}</span>
+          Active Team: <span className={`team-${currentTeam}`}>{teams[currentTeam]}</span>
         </div>
       </div>
 
@@ -135,12 +154,47 @@ const ControlPanel = ({ items, onCorrectAnswer, onWrongAnswer, currentTeam, reve
           </button>
         </div>
 
+        <div className="reveal-all-section">
+          <button
+            className="reveal-all-btn"
+            onClick={handleRevealAllClick}
+            disabled={revealedItems.length === items.length}
+          >
+            🔍 Reveal All Answers
+          </button>
+        </div>
+
         {selectedItem && (
           <div className="selected-item">
             <strong>Selected:</strong> #{selectedItem.id} - {selectedItem.answer}
           </div>
         )}
       </div>
+
+      {/* Confirmation Dialog */}
+      {showConfirmDialog && (
+        <div className="confirm-overlay">
+          <div className="confirm-dialog">
+            <h4>⚠️ Confirm Reveal All</h4>
+            <p>Are you sure you want to reveal ALL remaining answers?</p>
+            <p className="warning-text">This action cannot be undone!</p>
+            <div className="confirm-buttons">
+              <button 
+                className="confirm-cancel-btn" 
+                onClick={handleCancelRevealAll}
+              >
+                Cancel
+              </button>
+              <button 
+                className="confirm-reveal-btn" 
+                onClick={handleConfirmRevealAll}
+              >
+                Yes, Reveal All
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

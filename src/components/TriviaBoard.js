@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './TriviaBoard.css';
+import { getTeamColors, hexToRgb } from '../utils/teamUtils';
 
-const TriviaBoard = ({ gameState, onReset, title = "OCHO OVERTIME", items = [], onRevealItem, resetKey }) => {
+const TriviaBoard = ({ gameState, onReset, title = "OCHO OVERTIME", items = [], onRevealItem, resetKey, teams = [], itemTeamMap = new Map() }) => {
   const [revealedItems, setRevealedItems] = useState(new Set());
   const [flippingItems, setFlippingItems] = useState(new Set());
+
+
 
   // Reset board when resetKey changes
   useEffect(() => {
@@ -11,7 +14,7 @@ const TriviaBoard = ({ gameState, onReset, title = "OCHO OVERTIME", items = [], 
     setFlippingItems(new Set());
   }, [resetKey]);
 
-  const handleReveal = useCallback((id) => {
+  const handleReveal = useCallback((id, teamId = null) => {
     if (revealedItems.has(id) || flippingItems.has(id)) return;
     
     // Start the flip animation and immediately mark as revealed for styling
@@ -86,12 +89,20 @@ const TriviaBoard = ({ gameState, onReset, title = "OCHO OVERTIME", items = [], 
         {triviaItems.map((item) => {
           const isRevealed = revealedItems.has(item.id);
           const isFlipping = flippingItems.has(item.id);
+          const teamId = itemTeamMap.get(item.id);
+          const team = teams[teamId];
+          const teamColors = team ? getTeamColors(team.name) : null;
           
           return (
             <div
               key={item.id}
               className={`board-item ${isRevealed ? 'revealed' : ''} ${isFlipping ? 'flipping' : ''}`}
               onClick={() => handleReveal(item.id)}
+              style={isRevealed && teamColors ? {
+                '--team-color': teamColors.primary,
+                '--team-color-rgb': hexToRgb(teamColors.primary),
+                '--team-secondary': teamColors.secondary
+              } : {}}
             >
               <div className="item-number">{item.id}</div>
               <div className="item-answer">

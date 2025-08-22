@@ -51,8 +51,7 @@ const GameSetup = ({ onStartGame }) => {
     onStartGame({
       title: title.trim() || 'OCHO OVERTIME',
       items: itemsList,
-      team1: team1,
-      team2: team2
+      teams: [team1, team2]
     });
   };
 

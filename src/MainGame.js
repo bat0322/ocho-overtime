@@ -14,15 +14,16 @@ function MainGame() {
   });
   const [gameConfig, setGameConfig] = useState(null);
   const [currentMode, setCurrentMode] = useState('setup');
-  const [currentTeam, setCurrentTeam] = useState(1);
+  const [currentTeam, setCurrentTeam] = useState(0);
   const scoreUpdateMethodsRef = useRef(null);
   const [revealedItems, setRevealedItems] = useState(new Set());
+  const [itemTeamMap, setItemTeamMap] = useState(new Map()); // Track which team answered each item
   const [resetKey, setResetKey] = useState(0);
   const revealMethodRef = useRef(null);
   const channelRef = useRef(null);
   const [teams, setTeams] = useState([
-    { id: 1, name: '', circles: ['empty', 'empty', 'empty', 'empty', 'empty'] },
-    { id: 2, name: '', circles: ['empty', 'empty', 'empty', 'empty', 'empty'] }
+    { id: 0, name: '', circles: ['empty', 'empty', 'empty', 'empty', 'empty'] },
+    { id: 1, name: '', circles: ['empty', 'empty', 'empty', 'empty', 'empty'] }
   ]);
 
   // Setup BroadcastChannel
@@ -40,8 +41,9 @@ function MainGame() {
         });
       }
       if (type === 'CORRECT_ANSWER') {
+        console.log(teamId);
         if (revealMethodRef.current) {
-          revealMethodRef.current(itemId);
+          revealMethodRef.current(itemId, teamId);
         }
         if (scoreUpdateMethodsRef.current) {
           scoreUpdateMethodsRef.current.handleCorrectAnswer(teamId);
@@ -50,6 +52,16 @@ function MainGame() {
       if (type === 'WRONG_ANSWER') {
         if (scoreUpdateMethodsRef.current) {
           scoreUpdateMethodsRef.current.handleWrongAnswer(teamId);
+        }
+      }
+      if (type === 'REVEAL_ALL') {
+        if (gameConfig && gameConfig.items) {
+          const allItemIds = gameConfig.items.map(item => item.id);
+          allItemIds.forEach(itemId => {
+            if (revealMethodRef.current && !revealedItems.has(itemId)) {
+              revealMethodRef.current(itemId, null); // No specific team for reveal all
+            }
+          });
         }
       }
     };
@@ -75,8 +87,8 @@ function MainGame() {
   const handleStartGame = (config) => {
     setGameConfig(config);
     setTeams([
-      { id: 1, name: config.team1, circles: ['empty', 'empty', 'empty', 'empty', 'empty'] },
-      { id: 2, name: config.team2, circles: ['empty', 'empty', 'empty', 'empty', 'empty'] }
+      { id: 0, name: config.teams[0], circles: ['empty', 'empty', 'empty', 'empty', 'empty'] },
+      { id: 1, name: config.teams[1], circles: ['empty', 'empty', 'empty', 'empty', 'empty'] }
     ]);
     setCurrentMode('verification');
   };
@@ -94,11 +106,12 @@ function MainGame() {
 
   const handleReset = () => {
     setRevealedItems(new Set());
+    setItemTeamMap(new Map());
     setResetKey(k => k + 1);
     scoreUpdateMethodsRef.current = null;
     setTeams([
-      { id: 1, name: gameConfig?.team1 || '', circles: ['empty', 'empty', 'empty', 'empty', 'empty'] },
-      { id: 2, name: gameConfig?.team2 || '', circles: ['empty', 'empty', 'empty', 'empty', 'empty'] }
+      { id: 0, name: gameConfig?.teams[0] || '', circles: ['empty', 'empty', 'empty', 'empty', 'empty'] },
+      { id: 1, name: gameConfig?.teams[1] || '', circles: ['empty', 'empty', 'empty', 'empty', 'empty'] }
     ]);
   };
 
@@ -111,7 +124,7 @@ function MainGame() {
       round: 1,
       teams: []
     });
-    setCurrentTeam(1);
+    setCurrentTeam(0);
     setRevealedItems(new Set());
   };
 
@@ -123,11 +136,15 @@ function MainGame() {
     scoreUpdateMethodsRef.current = methods;
   }, []);
 
-  // Wrap the reveal method to also update revealedItems
+  // Wrap the reveal method to also update revealedItems and track teams
   const handleRevealItem = useCallback((method) => {
-    revealMethodRef.current = (id) => {
+    revealMethodRef.current = (id, teamId = null) => {
       setRevealedItems(prev => new Set(prev).add(id));
-      method(id);
+      console.log("teamId: ", teamId);
+      if (teamId !== null) {
+        setItemTeamMap(prev => new Map(prev).set(id, teamId));
+      }
+      method(id, teamId);
     };
   }, []);
 
@@ -150,6 +167,8 @@ function MainGame() {
     );
   }
 
+  console.log(itemTeamMap);
+
   return (
     <div className="App">
       <div className="game-container">
@@ -169,6 +188,8 @@ function MainGame() {
           items={gameConfig.items}
           onRevealItem={handleRevealItem}
           resetKey={resetKey}
+          teams={teams}
+          itemTeamMap={itemTeamMap}
         />
       </div>
       {/* Floating Reset Button */}

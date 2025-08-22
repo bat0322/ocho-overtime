@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
 }
 
 .verification-container {
@@ -89,7 +88,7 @@
   transform: translateY(-1px);
 }
 
-.item-number {
+.game-verification .item-number {
   background: rgba(255, 255, 255, 0.2);
   color: white;
   font-weight: bold;
