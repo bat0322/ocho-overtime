@@ -5,6 +5,7 @@ export const getTeamColors = (teamName) => {
     'Frankchester United': { primary: '#ED88E1', secondary: '#FBE64D' }, // Pink/Yellow
     'Herbstreit Vick Pet Clinic': { primary: '#001F5D', secondary: '#ECCF65' }, // Blue/Yellow
     'Hive Mind': { primary: '#F4CB54', secondary: '#000000' }, // Gold/Black
+    'Humongous Melonheads': { primary: '#39C3A4', secondary: '#C6EBB0' }, // Teal/Light Green
     'Hypnotoads': { primary: '#6A288B', secondary: '#3D1848' }, // Purple/Dark Purple
     'Lick My Qualls': { primary: '#EA3324', secondary: '#FFFFFF' }, // Red/White
     'Mentally Illest': { primary: '#EA983F', secondary: '#FFFFFF' }, // Orange/White
@@ -23,6 +24,7 @@ export const getTeamLogo = (teamName) => {
     'Frankchester United': 'frankchester_logo.png',
     'Herbstreit Vick Pet Clinic': 'herbstreit_vick_pet_clinic_logo.png',
     'Hive Mind': 'hive_mind_logo.png',
+    'Humongous Melonheads': 'humongous_melonheads_logo.png',
     'Hypnotoads': 'hypnotoads_logo.png',
     'Lick My Qualls': 'lick_my_qualls_logo.png',
     'Mentally Illest': 'mentally_illest_logo.png',

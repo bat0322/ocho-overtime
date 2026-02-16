@@ -13,13 +13,13 @@ const GameSetup = ({ onStartGame }) => {
     'Frankchester United',
     'Herbstreit Vick Pet Clinic',
     'Hive Mind',
+    'Humongous Melonheads',
     'Hypnotoads',
     'Lick My Qualls',
     'Mentally Illest',
     'Night Pandas',
     'Pool Boy',
-    'Scarlet Knights',
-    'Simple Jacks'
+    'Scarlet Knights'
   ];
 
   const handleStartGame = () => {
