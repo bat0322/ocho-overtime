@@ -10,7 +10,7 @@ export const getTeamColors = (teamName) => {
     'Lick My Qualls': { primary: '#EA3324', secondary: '#FFFFFF' }, // Red/White
     'Mentally Illest': { primary: '#EA983F', secondary: '#FFFFFF' }, // Orange/White
     'Night Pandas': { primary: '#000000', secondary: '#65A542' }, // Black/Green
-    'Sugar Boogers': { primary: '#002f83', secondary: '#44be59' },
+    'Sugar Boogers': { primary: '#002f83', secondary: '#44be59' }, // Navy/Green
     'Scarlet Knights': { primary: '#CE4146', secondary: '#D1D1D1' }, // Red/Light Gray
     'Simple Jacks': { primary: '#882111', secondary: '#F5C242' } // Dark Red/Gold
   };
