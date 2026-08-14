@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './GameSetup.css';
-import { loadOvertimes, saveOvertime, updateOvertime, deleteOvertime } from '../utils/overtimeStorage';
+import { loadOvertimes, saveOvertime, updateOvertime, deleteOvertime, unmarkOvertimeUsed } from '../utils/overtimeStorage';
 
 const GameSetup = ({ onStartGame }) => {
   const [title, setTitle] = useState('');
@@ -172,7 +172,16 @@ Colombia`);
                     <div className="saved-overtime-info">
                       <span className="saved-overtime-title">{ot.title}</span>
                       <span className="saved-overtime-meta">{count} items</span>
-                      {ot.used && <span className="used-badge">Used</span>}
+                      {ot.used && (
+                        <span className="used-badge">
+                          Used
+                          <button
+                            className="used-badge-clear"
+                            onClick={(e) => { e.stopPropagation(); unmarkOvertimeUsed(ot.id); refreshSaved(); }}
+                            title="Mark as unused"
+                          >×</button>
+                        </span>
+                      )}
                     </div>
                     <div className="saved-overtime-actions">
                       <button

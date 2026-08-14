@@ -39,6 +39,15 @@ export function markOvertimeUsed(id) {
   }
 }
 
+export function unmarkOvertimeUsed(id) {
+  const overtimes = loadOvertimes();
+  const idx = overtimes.findIndex(o => o.id === id);
+  if (idx !== -1) {
+    overtimes[idx].used = false;
+    persist(overtimes);
+  }
+}
+
 export function deleteOvertime(id) {
   persist(loadOvertimes().filter(o => o.id !== id));
 }
