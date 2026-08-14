@@ -10,7 +10,7 @@ export const getTeamColors = (teamName) => {
     'Lick My Qualls': { primary: '#EA3324', secondary: '#FFFFFF' }, // Red/White
     'Mentally Illest': { primary: '#EA983F', secondary: '#FFFFFF' }, // Orange/White
     'Night Pandas': { primary: '#000000', secondary: '#65A542' }, // Black/Green
-    'Pool Boy': { primary: '#A32E2D', secondary: '#0E224A' }, // Red/Dark Blue
+    'Sugar Boogers': { primary: '#002f83', secondary: '#44be59' },
     'Scarlet Knights': { primary: '#CE4146', secondary: '#D1D1D1' }, // Red/Light Gray
     'Simple Jacks': { primary: '#882111', secondary: '#F5C242' } // Dark Red/Gold
   };
@@ -29,7 +29,7 @@ export const getTeamLogo = (teamName) => {
     'Lick My Qualls': 'lick_my_qualls_logo.png',
     'Mentally Illest': 'mentally_illest_logo.png',
     'Night Pandas': 'night_pandas_logo.png',
-    'Pool Boy': 'pool_boy_logo.png',
+    'Sugar Boogers': 'sugar_boogers_logo.png',
     'Scarlet Knights': 'scarlet_knights_logo.png',
     'Simple Jacks': 'simple_jacks_logo.png'
   };

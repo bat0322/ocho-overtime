@@ -22,7 +22,7 @@ const GameSetup = ({ onStartGame }) => {
     'Lick My Qualls',
     'Mentally Illest',
     'Night Pandas',
-    'Pool Boy',
+    'Sugar Boogers',
     'Scarlet Knights'
   ];
 
