@@ -266,7 +266,7 @@ Colombia`);
                 className="new-overtime-btn"
                 onClick={() => { setTitle(''); setItems(''); setLoadedOvertimeId(null); }}
               >
-                New
+                Clear
               </button>
             )}
             <button
