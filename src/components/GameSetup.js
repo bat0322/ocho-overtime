@@ -100,35 +100,35 @@ const GameSetup = ({ onStartGame }) => {
   };
 
   const handleLoadSampleData = () => {
-    setTitle('25 Largest Countries');
+    setTitle('First 25 Letters of the Alphabet');
     setTeam1('Lick My Qualls');
     setTeam2('Mentally Illest');
     setLoadedOvertimeId(null);
-    setItems(`Russia
-Canada
-United States
-China
-Brazil
-Australia
-India
-Argentina
-Kazakhstan
-Algeria
-Democratic Republic of the Congo
-Saudi Arabia
-Mexico
-Indonesia
-Sudan
-Libya
-Iran
-Mongolia
-Peru
-Chad
-Niger
-Angola
-Mali
-South Africa
-Colombia`);
+    setItems(`A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y`);
   };
 
   const itemCount = items.split('\n').filter(item => item.trim().length > 0).length;
@@ -213,7 +213,7 @@ Colombia`);
               id="title"
               value={title}
               onChange={(e) => { setTitle(e.target.value); }}
-              placeholder="e.g. 25 Largest Countries"
+              placeholder="e.g. First 25 Letters of the Alphabet"
               className="title-input"
             />
           </div>
