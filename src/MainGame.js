@@ -3,6 +3,7 @@ import Scoreboard from './components/Scoreboard';
 import TriviaBoard from './components/TriviaBoard';
 import GameSetup from './components/GameSetup';
 import GameVerification from './components/GameVerification';
+import { markOvertimeUsed } from './utils/overtimeStorage';
 import './App.css';
 
 function MainGame() {
@@ -94,6 +95,9 @@ function MainGame() {
   };
 
   const handleConfirmGame = () => {
+    if (gameConfig?.overtimeId != null) {
+      markOvertimeUsed(gameConfig.overtimeId);
+    }
     setCurrentMode('game');
     // Open the control panel popup automatically
     window.open(`${window.location.origin}${window.location.pathname}#/control-panel`, 'HostControlPanel', 'width=420,height=700');
