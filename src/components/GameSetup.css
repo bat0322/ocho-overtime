@@ -304,6 +304,7 @@
 
 .load-sample-btn,
 .save-overtime-btn,
+.new-overtime-btn,
 .start-game-btn {
   padding: 12px 24px;
   border: 2px solid rgba(255, 255, 255, 0.3);
@@ -317,13 +318,15 @@
 }
 
 .load-sample-btn,
-.save-overtime-btn {
+.save-overtime-btn,
+.new-overtime-btn {
   background: rgba(255, 255, 255, 0.15);
   color: white;
 }
 
 .load-sample-btn:hover,
-.save-overtime-btn:hover:not(:disabled) {
+.save-overtime-btn:hover:not(:disabled),
+.new-overtime-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -374,6 +377,7 @@
   
   .load-sample-btn,
   .save-overtime-btn,
+  .new-overtime-btn,
   .start-game-btn {
     width: 100%;
     max-width: 200px;

@@ -261,6 +261,14 @@ Colombia`);
             >
               Load Sample
             </button>
+            {isSaved && (
+              <button
+                className="new-overtime-btn"
+                onClick={() => { setTitle(''); setItems(''); setLoadedOvertimeId(null); }}
+              >
+                New
+              </button>
+            )}
             <button
               className="save-overtime-btn"
               onClick={handleSaveOvertime}
